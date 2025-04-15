@@ -1,14 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("paymentForm");
-  const formError = document.getElementById("formError"); // Obtener la alerta de error
+  const formError = document.getElementById("formError");
 
-  // Ocultar la alerta al cargar la página
   formError.style.display = "none";
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    // Limpiar errores anteriores
     document.querySelectorAll(".text-danger.error-msg").forEach(el => el.remove());
     document.querySelectorAll(".is-invalid").forEach(el => el.classList.remove("is-invalid"));
 
@@ -20,7 +18,6 @@ document.addEventListener("DOMContentLoaded", () => {
       input.parentNode.insertBefore(error, input);
     };
 
-    // Obtener campos
     const cardNumber = document.getElementById("name");
     const cvc = document.getElementById("inputPassword");
     const amountGroup = document.getElementById("amount-group");
@@ -35,11 +32,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let isValid = true;
 
-    // Elimina errores previos antes de validar
     document.querySelectorAll(".error-msg").forEach(e => e.remove());
     document.querySelectorAll(".is-invalid").forEach(e => e.classList.remove("is-invalid"));
 
-    // Validaciones
     if (cardNumber.value.trim().length !== 16 || isNaN(cardNumber.value)) {
       showError(cardNumber, "El número de tarjeta debe tener 16 dígitos.");
       isValid = false;
@@ -99,11 +94,10 @@ document.addEventListener("DOMContentLoaded", () => {
       isValid = false;
     }
 
-    // Si hay errores, mostrar la alerta
     if (!isValid) {
-      formError.style.display = "block"; // Mostrar alerta de error
+      formError.style.display = "block";
     } else {
-      // Si todo es válido, ocultar la alerta
+      
       formError.style.display = "none";
       alert("Formulario enviado correctamente ✅");
       form.reset();
@@ -112,11 +106,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   radios.forEach(radio => {
     radio.addEventListener("change", () => {
-      // Elimina mensaje de error si existe
+      
       const errorMsg = cardOptions.parentNode.querySelector(".error-msg");
       if (errorMsg) errorMsg.remove();
 
-      // Elimina estilo de error
       cardOptions.classList.remove("is-invalid");
     });
   });
