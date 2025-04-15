@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       
       formError.style.display = "none";
-      alert("Formulario enviado correctamente ✅");
+      alert("Formulario enviado correctamente");
       form.reset();
     }
   });
